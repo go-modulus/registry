@@ -4,7 +4,7 @@ go 1.26
 
 require (
 	github.com/fatih/color v1.18.0
-	github.com/go-modulus/modulus v0.4.14
+	github.com/go-modulus/modulus v0.5.0-rc.2
 )
 
 require (
