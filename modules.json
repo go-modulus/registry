@@ -1,111 +1,72 @@
 {
-  "name": "Modulus framework modules manifest",
-  "description": "List of installed modules for the Modulus framework",
+  "name": "Modulus framework modules registry",
+  "description": "List of available modules for the Modulus framework",
   "version": "1.0.0",
   "modules": [
     {
-      "name": "urfave cli",
+      "name": "captcha",
+      "package": "github.com/go-modulus/modulus/captcha",
+      "description": "Captcha processor that have to be integrated in auth queries to protect against bots registrations.",
+      "install": {
+        "envVars": [
+          {
+            "key": "RECAPTCHA_ENABLED",
+            "value": "false",
+            "comment": ""
+          },
+          {
+            "key": "RECAPTCHA_V2_SECRET",
+            "value": "",
+            "comment": ""
+          },
+          {
+            "key": "RECAPTCHA_V3_SECRET",
+            "value": "",
+            "comment": ""
+          },
+          {
+            "key": "RECAPTCHA_V3_THRESHOLD",
+            "value": "0.5",
+            "comment": ""
+          }
+        ],
+        "files": [
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/captcha/install/graphql/captcha.graphql",
+            "destFile": "internal/captcha/graphql/captcha.graphql"
+          }
+        ]
+      },
+      "version": "1.0.0"
+    },
+    {
+      "name": "cli",
       "package": "github.com/go-modulus/modulus/cli",
-      "description": "Adds ability to create cli applications in the Modulus framework.",
+      "description": "Cli applications module for the Modulus framework. It is based on github.com/urfave/cli library.",
       "install": {},
       "version": "1.0.0"
     },
     {
-      "name": "pgx",
-      "package": "github.com/go-modulus/modulus/db/pgx",
-      "description": "A wrapper for the pgx package to integrate it into the Modulus framework.",
-      "install": {
-        "envVars": [
-          {
-            "key": "PGX_DSN",
-            "value": "",
-            "comment": "Use this variable to set the DSN for the PGX connection. It overwrites the other PG_* variables. Example: PGX_DSN=postgres://postgres:foobar@localhost:5432/test?sslmode=disable"
-          },
-          {
-            "key": "PG_DB_NAME",
-            "value": "test",
-            "comment": ""
-          },
-          {
-            "key": "PG_HOST",
-            "value": "localhost",
-            "comment": ""
-          },
-          {
-            "key": "PG_PASSWORD",
-            "value": "foobar",
-            "comment": ""
-          },
-          {
-            "key": "PG_PORT",
-            "value": "5432",
-            "comment": ""
-          },
-          {
-            "key": "PG_SSL_MODE",
-            "value": "disable",
-            "comment": ""
-          },
-          {
-            "key": "PG_USER",
-            "value": "postgres",
-            "comment": ""
-          }
-        ],
-        "dependencies": [
-          "slog logger"
-        ]
-      },
-      "version": "1.0.0"
-    },
-    {
-      "name": "slog logger",
-      "package": "github.com/go-modulus/modulus/logger",
-      "description": "Adds a slog logger with a zap backend to the Modulus framework.",
-      "install": {
-        "envVars": [
-          {
-            "key": "LOGGER_APP",
-            "value": "modulus",
-            "comment": ""
-          },
-          {
-            "key": "LOGGER_FX_EVENT_LEVEL",
-            "value": "info",
-            "comment": "Use one of \"debug\", \"info\", \"warn\", \"error\". It sets the maximum level of the fx events that should be logged"
-          },
-          {
-            "key": "LOGGER_LEVEL",
-            "value": "debug",
-            "comment": "Use one of \"debug\", \"info\", \"warn\", \"error\". It sets the maximum level of the log messages that should be logged"
-          },
-          {
-            "key": "LOGGER_TYPE",
-            "value": "console",
-            "comment": "Use either \"console\" or \"json\" value"
-          }
-        ]
-      },
-      "version": "1.0.0"
-    },
-    {
-      "name": "dbmate migrator",
-      "package": "github.com/go-modulus/modulus/db/migrator",
-      "description": "Several CLI commands to use DBMate (https://github.com/amacneil/dbmate) migration tool inside your application.",
-      "install": {
-        "dependencies": [
-          "pgx",
-          "urfave cli"
-        ]
-      },
-      "version": "1.0.0"
-    },
-    {
-      "name": "chi http",
+      "name": "http",
       "package": "github.com/go-modulus/modulus/http",
-      "description": "HTTP module based on the Chi router.",
+      "description": "Base package for http server. It is based on the mux server and can be used standalone, but the main purpose of this package is working together with another router like Chi provided in the separate module.",
       "install": {
         "envVars": [
+          {
+            "key": "CORS_ADDITIONAL_ALLOWED_HEADERS",
+            "value": "[]",
+            "comment": "Comma-separated list of additional allowed headers for CORS requests"
+          },
+          {
+            "key": "CORS_HOST",
+            "value": "^https?://(localhost|127.0.0.1)(:[0-9]+)?$",
+            "comment": "Regular expression pattern for allowed origins or * for all origins"
+          },
+          {
+            "key": "CORS_MAX_AGE",
+            "value": "3600",
+            "comment": ""
+          },
           {
             "key": "HTTP_HOST",
             "value": "localhost:8001",
@@ -136,23 +97,207 @@
       "version": "1.0.0"
     },
     {
-      "name": "http middleware",
-      "package": "github.com/go-modulus/modulus/http/middleware",
-      "description": "Various useful middlewares",
+      "name": "logger",
+      "package": "github.com/go-modulus/modulus/logger",
+      "description": "Slog logger with a zap backend for the Modulus framework.",
       "install": {
         "envVars": [
           {
-            "key": "CORS_HOST",
-            "value": "^https?://(localhost|127.0.0.1)(:[0-9]+)?$",
+            "key": "LOGGER_APP",
+            "value": "modulus",
             "comment": ""
+          },
+          {
+            "key": "LOGGER_FX_EVENT_LEVEL",
+            "value": "info",
+            "comment": "Use one of \"debug\", \"info\", \"warn\", \"error\". It sets the maximum level of the fx events that should be logged"
+          },
+          {
+            "key": "LOGGER_LEVEL",
+            "value": "debug",
+            "comment": "Use one of \"debug\", \"info\", \"warn\", \"error\". It sets the maximum level of the log messages that should be logged"
+          },
+          {
+            "key": "LOGGER_TYPE",
+            "value": "console",
+            "comment": "Use either \"console\" or \"json\" value"
           }
         ]
       },
       "version": "1.0.0"
     },
     {
-      "name": "gqlgen",
-      "package": "github.com/go-modulus/modulus/graphql",
+      "name": "modulus/auth",
+      "package": "github.com/go-modulus/auth",
+      "description": "Authentication module. Helps protect HTTP routes with tokens and sessions. If you want to use default storage for identities and tokens, please install pgx module first.",
+      "install": {
+        "envVars": [
+          {
+            "key": "AUTH_ACCESS_TOKEN_TTL",
+            "value": "1h0m0s",
+            "comment": ""
+          },
+          {
+            "key": "AUTH_REFRESH_TOKEN_TTL",
+            "value": "720h0m0s",
+            "comment": ""
+          },
+          {
+            "key": "AUTH_RESET_PASSWORD_LIFE",
+            "value": "1h0m0s",
+            "comment": ""
+          },
+          {
+            "key": "AUTH_RESET_PASSWORD_RESEND_COOLDOWN",
+            "value": "5m0s",
+            "comment": ""
+          }
+        ],
+        "dependencies": [
+          "modulus/pgx",
+          "modulus/graphql",
+          "logger"
+        ],
+        "files": [
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/storage/migration/20240214134322_auth.sql",
+            "destFile": "internal/auth/storage/migration/20240214134322_auth.sql"
+          },
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/storage/migration/20240320084613_auth_account.sql",
+            "destFile": "internal/auth/storage/migration/20240320084613_auth_account.sql"
+          },
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/storage/migration/20250508110252_add_reset_password_request_table.sql",
+            "destFile": "internal/auth/storage/migration/20250508110252_add_reset_password_request_table.sql"
+          },
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/install/module.go.tmpl",
+            "destFile": "internal/auth/module.go"
+          },
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/install/graphql/auth.graphql",
+            "destFile": "internal/auth/graphql/auth.graphql"
+          },
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/install/graphql/directive.go",
+            "destFile": "internal/auth/graphql/directive.go"
+          }
+        ],
+        "postInstallCommands": [
+          {
+            "cmdPackage": "github.com/go-modulus/mtools/cmd/mtools@latest",
+            "params": [
+              "db",
+              "migrate"
+            ]
+          }
+        ]
+      },
+      "version": "1.0.0",
+      "localPath": "internal/auth"
+    },
+    {
+      "name": "modulus/auth/email",
+      "package": "github.com/go-modulus/auth/providers/email",
+      "description": "A provider for auth module to organize authentication via the email/password pair.",
+      "install": {
+        "envVars": [
+          {
+            "key": "FRONTEND_HOST",
+            "value": "",
+            "comment": ""
+          }
+        ],
+        "dependencies": [
+          "modulus/auth",
+          "captcha"
+        ],
+        "files": [
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/email/graphql/auth.graphql",
+            "destFile": "internal/auth/providers/email/graphql/auth.graphql"
+          },
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/email/prompt.md",
+            "destFile": "internal/auth/providers/email/prompt.md"
+          }
+        ]
+      },
+      "version": "1.0.0",
+      "localPath": "internal/auth/providers/email"
+    },
+    {
+      "name": "modulus/auth/google",
+      "package": "github.com/go-modulus/auth/providers/google",
+      "description": "Authentication provider for the auth module that helps auth using Google.",
+      "install": {
+        "envVars": [
+          {
+            "key": "AUTH_GOOGLE_CLIENT_ID",
+            "value": "",
+            "comment": ""
+          },
+          {
+            "key": "AUTH_GOOGLE_REDIRECT_URL",
+            "value": "http://localhost:8001/auth/google/callback",
+            "comment": ""
+          },
+          {
+            "key": "AUTH_GOOGLE_SCOPES",
+            "value": "[openid email profile]",
+            "comment": ""
+          },
+          {
+            "key": "AUTH_GOOGLE_SECRET",
+            "value": "",
+            "comment": ""
+          }
+        ],
+        "dependencies": [
+          "modulus/pgx",
+          "modulus/auth"
+        ],
+        "files": [
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/graphql/auth.graphql",
+            "destFile": "internal/auth/providers/google/graphql/auth.graphql"
+          },
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/prompt.md",
+            "destFile": "internal/auth/providers/google/prompt.md"
+          },
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/README.md",
+            "destFile": "internal/auth/providers/google/README.md"
+          },
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/img/name_of_google_client.png",
+            "destFile": "internal/auth/providers/google/img/name_of_google_client.png"
+          },
+          {
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/img/register_new_project.png",
+            "destFile": "internal/auth/providers/google/img/register_new_project.png"
+          }
+        ]
+      },
+      "version": "1.0.0",
+      "localPath": "internal/auth/providers/google"
+    },
+    {
+      "name": "modulus/chihttp",
+      "package": "github.com/go-modulus/chihttp",
+      "description": "Chi HTTP router that is working over the base http modulus module.",
+      "install": {
+        "dependencies": [
+          "http"
+        ]
+      },
+      "version": "1.0.0"
+    },
+    {
+      "name": "modulus/graphql",
+      "package": "github.com/go-modulus/graphql",
       "description": "Graphql server and generator. It is based on the gqlgen library. It also provides a playground for the graphql server. You need to install the `chi http` module to use this module.",
       "install": {
         "envVars": [
@@ -193,7 +338,8 @@
           }
         ],
         "dependencies": [
-          "chi http"
+          "http",
+          "logger"
         ],
         "files": [
           {
@@ -237,10 +383,6 @@
             "destFile": "internal/graphql/module.go"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/generated/tools.go",
-            "destFile": "internal/graphql/generated/tools.go"
-          },
-          {
             "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/model/tools.go",
             "destFile": "internal/graphql/model/tools.go"
           },
@@ -255,7 +397,7 @@
         ],
         "postInstallCommands": [
           {
-            "cmdPackage": "github.com/99designs/gqlgen",
+            "cmdPackage": "github.com/99designs/gqlgen@latest",
             "params": [
               "generate",
               "--config",
@@ -268,124 +410,15 @@
       "localPath": "internal/graphql"
     },
     {
-      "name": "modulus auth",
-      "package": "github.com/go-modulus/modulus/auth",
-      "description": "Authentication module. Helps protect HTTP routes with tokens and sessions. If you want to use default storage for identities and tokens, please install pgx module first.",
+      "name": "modulus/pgx",
+      "package": "github.com/go-modulus/pgx",
+      "description": "A wrapper for the pgx package to integrate it into the Modulus framework.",
       "install": {
         "envVars": [
           {
-            "key": "AUTH_ACCESS_TOKEN_TTL",
-            "value": "1h0m0s",
-            "comment": ""
-          },
-          {
-            "key": "AUTH_REFRESH_TOKEN_TTL",
-            "value": "720h0m0s",
-            "comment": ""
-          },
-          {
-            "key": "AUTH_RESET_PASSWORD_LIFE",
-            "value": "1h0m0s",
-            "comment": ""
-          },
-          {
-            "key": "AUTH_RESET_PASSWORD_RESEND_COOLDOWN",
-            "value": "5m0s",
-            "comment": ""
-          }
-        ],
-        "dependencies": [
-          "pgx"
-        ],
-        "files": [
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/storage/migration/20240214134322_auth.sql",
-            "destFile": "internal/auth/storage/migration/20240214134322_auth.sql"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/storage/migration/20240320084613_auth_account.sql",
-            "destFile": "internal/auth/storage/migration/20240320084613_auth_account.sql"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/storage/migration/20250508110252_add_reset_password_request_table.sql",
-            "destFile": "internal/auth/storage/migration/20250508110252_add_reset_password_request_table.sql"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/install/module.go.tmpl",
-            "destFile": "internal/auth/module.go"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/install/graphql/auth.graphql",
-            "destFile": "internal/auth/graphql/auth.graphql"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/install/graphql/directive.go",
-            "destFile": "internal/auth/graphql/directive.go"
-          }
-        ],
-        "postInstallCommands": [
-          {
-            "cmdPackage": "github.com/go-modulus/mtools/cmd/mtools@latest",
-            "params": [
-              "db",
-              "migrate"
-            ]
-          }
-        ]
-      },
-      "version": "1.0.0",
-      "localPath": "internal/auth"
-    },
-    {
-      "name": "auth email provider",
-      "package": "github.com/go-modulus/modulus/auth/providers/email",
-      "description": "A provider for auth module to organize authentication via the email/password pair.",
-      "install": {
-        "envVars": [
-          {
-            "key": "FRONTEND_HOST",
+            "key": "PGX_DSN",
             "value": "",
-            "comment": ""
-          }
-        ],
-        "dependencies": [
-          "modulus auth",
-          "captcha"
-        ],
-        "files": [
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/email/graphql/auth.graphql",
-            "destFile": "internal/auth/providers/email/graphql/auth.graphql"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/email/prompt.md",
-            "destFile": "internal/auth/providers/email/prompt.md"
-          }
-        ]
-      },
-      "version": "1.0.0",
-      "localPath": "internal/auth/providers/email"
-    },
-    {
-      "name": "embedded pg",
-      "package": "github.com/go-modulus/modulus/db/embedded",
-      "description": "A wrapper for the github.com/fergusstrange/embedded-postgres package to integrate it into the Modulus framework. This package starts the embedded postgres database and creates the user and the database mentioned in PG_* vars. It works together with the github.com/go-modulus/modulus/db/pgx and migration packages.",
-      "install": {
-        "envVars": [
-          {
-            "key": "EMBEDDED_POSTGRES_DATA_PATH",
-            "value": "/tmp/embeddedpostgres/data",
-            "comment": "The path that will be used for the Postgres data directory. If you want to persist data between restarts, set this variable to a path that is not inside the EMBEDDED_POSTGRES_RUNTIME_PATH."
-          },
-          {
-            "key": "EMBEDDED_POSTGRES_RUN",
-            "value": "true",
-            "comment": "Set this variable to false if you want to disable the embedded postgres database."
-          },
-          {
-            "key": "EMBEDDED_POSTGRES_RUNTIME_PATH",
-            "value": "/tmp/embeddedpostgres",
-            "comment": ""
+            "comment": "Use this variable to set the DSN for the PGX connection. It overwrites the other PG_* variables. Example: PGX_DSN=postgres://postgres:foobar@localhost:5432/test?sslmode=disable"
           },
           {
             "key": "PG_DB_NAME",
@@ -419,15 +452,26 @@
           }
         ],
         "dependencies": [
-          "pgx",
-          "dbmate migrator"
+          "logger"
         ]
       },
       "version": "1.0.0"
     },
     {
-      "name": "temporal",
-      "package": "github.com/go-modulus/modulus/temporal",
+      "name": "modulus/pgx/migrator",
+      "package": "github.com/go-modulus/pgx/migrator",
+      "description": "PGX migrator module for Modulus framework. It is based on DbMate (https://github.com/amacneil/dbmate) migrator.",
+      "install": {
+        "dependencies": [
+          "modulus/pgx",
+          "cli"
+        ]
+      },
+      "version": "1.0.0"
+    },
+    {
+      "name": "modulus/temporal",
+      "package": "github.com/go-modulus/temporal",
       "description": "Temporal module for Modulus framework.",
       "install": {
         "envVars": [
@@ -448,109 +492,16 @@
           }
         ],
         "dependencies": [
-          "urfave cli"
+          "cli"
         ],
         "files": [
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/temporal/install/temporal.mk",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/temporal/refs/heads/main/install/temporal.mk",
             "destFile": "mk/temporal.mk"
           }
         ]
       },
       "version": "1.0.0"
-    },
-    {
-      "name": "captcha",
-      "package": "github.com/go-modulus/modulus/captcha",
-      "description": "Captcha processor that have to be integrated in auth queries to protect against bots registrations.",
-      "install": {
-        "envVars": [
-          {
-            "key": "RECAPTCHA_ENABLED",
-            "value": "false",
-            "comment": ""
-          },
-          {
-            "key": "RECAPTCHA_V2_SECRET",
-            "value": "",
-            "comment": ""
-          },
-          {
-            "key": "RECAPTCHA_V3_SECRET",
-            "value": "",
-            "comment": ""
-          },
-          {
-            "key": "RECAPTCHA_V3_THRESHOLD",
-            "value": "0.5",
-            "comment": ""
-          }
-        ],
-        "files": [
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/captcha/install/graphql/captcha.graphql",
-            "destFile": "internal/captcha/graphql/captcha.graphql"
-          }
-        ]
-      },
-      "version": "1.0.0"
-    },
-    {
-      "name": "auth google provider",
-      "package": "github.com/go-modulus/modulus/auth/providers/google",
-      "description": "Authentication provider for the auth module that helps auth using Google.",
-      "install": {
-        "envVars": [
-          {
-            "key": "AUTH_GOOGLE_CLIENT_ID",
-            "value": "",
-            "comment": ""
-          },
-          {
-            "key": "AUTH_GOOGLE_REDIRECT_URL",
-            "value": "http://localhost:8001/auth/google/callback",
-            "comment": ""
-          },
-          {
-            "key": "AUTH_GOOGLE_SCOPES",
-            "value": "[openid email profile]",
-            "comment": ""
-          },
-          {
-            "key": "AUTH_GOOGLE_SECRET",
-            "value": "",
-            "comment": ""
-          }
-        ],
-        "dependencies": [
-          "pgx",
-          "modulus auth"
-        ],
-        "files": [
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/graphql/auth.graphql",
-            "destFile": "internal/auth/providers/google/graphql/auth.graphql"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/prompt.md",
-            "destFile": "internal/auth/providers/google/prompt.md"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/README.md",
-            "destFile": "internal/auth/providers/google/README.md"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/img/name_of_google_client.png",
-            "destFile": "internal/auth/providers/google/img/name_of_google_client.png"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/img/register_new_project.png",
-            "destFile": "internal/auth/providers/google/img/register_new_project.png"
-          }
-        ]
-      },
-      "version": "1.0.0",
-      "localPath": "internal/auth/providers/google"
     },
     {
       "name": "translation",
