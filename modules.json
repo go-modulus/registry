@@ -49,7 +49,7 @@
     {
       "name": "http",
       "package": "github.com/go-modulus/modulus/http",
-      "description": "Base package for http server. It is based on the mux server and can be used standalone, but the main purpose of this package is working together with another router like Chi provided in the separate module.",
+      "description": "Base package for http server. It is based on the net/http server that is able to work without any dependencies, but the main purpose of this package is working together with another router like Chi provided in the separate module.",
       "install": {
         "envVars": [
           {
@@ -92,6 +92,9 @@
             "value": "15s",
             "comment": ""
           }
+        ],
+        "dependencies": [
+          "logger"
         ]
       },
       "version": "1.0.0"
@@ -110,12 +113,12 @@
           {
             "key": "LOGGER_FX_EVENT_LEVEL",
             "value": "info",
-            "comment": "Use one of \"debug\", \"info\", \"warn\", \"error\". It sets the maximum level of the fx events that should be logged"
+            "comment": "Use one of \"debug\", \"info\", \"warn\", \"error\". It sets the minimum level of the fx events that should be logged"
           },
           {
             "key": "LOGGER_LEVEL",
             "value": "debug",
-            "comment": "Use one of \"debug\", \"info\", \"warn\", \"error\". It sets the maximum level of the log messages that should be logged"
+            "comment": "Use one of \"debug\", \"info\", \"warn\", \"error\". It sets the minimum level of the log messages that should be logged"
           },
           {
             "key": "LOGGER_TYPE",
@@ -160,27 +163,27 @@
         ],
         "files": [
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/storage/migration/20240214134322_auth.sql",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/storage/migration/20240214134322_auth.sql",
             "destFile": "internal/auth/storage/migration/20240214134322_auth.sql"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/storage/migration/20240320084613_auth_account.sql",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/storage/migration/20240320084613_auth_account.sql",
             "destFile": "internal/auth/storage/migration/20240320084613_auth_account.sql"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/storage/migration/20250508110252_add_reset_password_request_table.sql",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/storage/migration/20250508110252_add_reset_password_request_table.sql",
             "destFile": "internal/auth/storage/migration/20250508110252_add_reset_password_request_table.sql"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/install/module.go.tmpl",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/install/module.go.tmpl",
             "destFile": "internal/auth/module.go"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/install/graphql/auth.graphql",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/install/graphql/auth.graphql",
             "destFile": "internal/auth/graphql/auth.graphql"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/install/graphql/directive.go",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/install/graphql/directive.go",
             "destFile": "internal/auth/graphql/directive.go"
           }
         ],
@@ -215,11 +218,11 @@
         ],
         "files": [
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/email/graphql/auth.graphql",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/email/graphql/auth.graphql",
             "destFile": "internal/auth/providers/email/graphql/auth.graphql"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/email/prompt.md",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/email/prompt.md",
             "destFile": "internal/auth/providers/email/prompt.md"
           }
         ]
@@ -260,23 +263,23 @@
         ],
         "files": [
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/graphql/auth.graphql",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/google/graphql/auth.graphql",
             "destFile": "internal/auth/providers/google/graphql/auth.graphql"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/prompt.md",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/google/prompt.md",
             "destFile": "internal/auth/providers/google/prompt.md"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/README.md",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/google/README.md",
             "destFile": "internal/auth/providers/google/README.md"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/img/name_of_google_client.png",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/google/img/name_of_google_client.png",
             "destFile": "internal/auth/providers/google/img/name_of_google_client.png"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/auth/providers/google/img/register_new_project.png",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/google/img/register_new_project.png",
             "destFile": "internal/auth/providers/google/img/register_new_project.png"
           }
         ]
