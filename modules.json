@@ -220,10 +220,6 @@
           {
             "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/email/graphql/auth.graphql",
             "destFile": "internal/auth/providers/email/graphql/auth.graphql"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/email/prompt.md",
-            "destFile": "internal/auth/providers/email/prompt.md"
           }
         ]
       },
@@ -265,10 +261,6 @@
           {
             "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/google/graphql/auth.graphql",
             "destFile": "internal/auth/providers/google/graphql/auth.graphql"
-          },
-          {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/google/prompt.md",
-            "destFile": "internal/auth/providers/google/prompt.md"
           },
           {
             "sourceUrl": "https://raw.githubusercontent.com/go-modulus/auth/refs/heads/main/providers/google/README.md",
