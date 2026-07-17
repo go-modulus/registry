@@ -4,9 +4,9 @@ go 1.26
 
 require (
 	github.com/fatih/color v1.19.0
-	github.com/go-modulus/auth v0.1.0
+	github.com/go-modulus/auth v0.1.1
 	github.com/go-modulus/chihttp v0.2.0
-	github.com/go-modulus/graphql v0.2.0
+	github.com/go-modulus/graphql v0.2.1
 	github.com/go-modulus/modulus v0.5.0
 	github.com/go-modulus/pgx v0.2.0
 	github.com/go-modulus/temporal v0.2.0

@@ -189,7 +189,7 @@
         ],
         "postInstallCommands": [
           {
-            "cmdPackage": "github.com/go-modulus/mtools/cmd/mtools@latest",
+            "cmdPackage": "github.com/go-modulus/mtools@latest",
             "params": [
               "db",
               "migrate"
@@ -338,55 +338,55 @@
         ],
         "files": [
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/schema.graphql",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/schema.graphql",
             "destFile": "internal/graphql/schema.graphql"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/gqlgen.yaml",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/gqlgen.yaml",
             "destFile": "gqlgen.yaml"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/types/time.go",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/types/time.go",
             "destFile": "internal/graphql/types/time.go"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/types/time.graphql",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/types/time.graphql",
             "destFile": "internal/graphql/types/time.graphql"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/types/uuid.go",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/types/uuid.go",
             "destFile": "internal/graphql/types/uuid.go"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/types/uuid.graphql",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/types/uuid.graphql",
             "destFile": "internal/graphql/types/uuid.graphql"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/types/void.go",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/types/void.go",
             "destFile": "internal/graphql/types/void.go"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/types/void.graphql",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/types/void.graphql",
             "destFile": "internal/graphql/types/void.graphql"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/gqlgen.mk",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/gqlgen.mk",
             "destFile": "mk/gqlgen.mk"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/module.go.tmpl",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/module.go.tmpl",
             "destFile": "internal/graphql/module.go"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/model/tools.go",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/model/tools.go",
             "destFile": "internal/graphql/model/tools.go"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/resolver/resolver.go.tmpl",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/resolver/resolver.go.tmpl",
             "destFile": "internal/graphql/resolver/resolver.go"
           },
           {
-            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/modulus/refs/heads/main/graphql/install/resolver/schema.resolvers.go.tmpl",
+            "sourceUrl": "https://raw.githubusercontent.com/go-modulus/graphql/refs/heads/main/install/resolver/schema.resolvers.go.tmpl",
             "destFile": "internal/graphql/resolver/schema.resolvers.go"
           }
         ],
