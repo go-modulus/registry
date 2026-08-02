@@ -158,7 +158,6 @@
         ],
         "dependencies": [
           "modulus/pgx",
-          "modulus/graphql",
           "logger"
         ],
         "files": [
@@ -327,6 +326,16 @@
             "comment": ""
           },
           {
+            "key": "GQL_SUBSCRIPTION_PING_INTERVAL",
+            "value": "10s",
+            "comment": "Keepalive ping interval connection"
+          },
+          {
+            "key": "GQL_SUBSCRIPTION_TRANSPORT",
+            "value": "ws",
+            "comment": "Transport for GraphQL subscriptions. Allowed values: ws, sse"
+          },
+          {
             "key": "GQL_TRACING_ENABLED",
             "value": "false",
             "comment": ""
@@ -443,6 +452,11 @@
           {
             "key": "PG_USER",
             "value": "postgres",
+            "comment": ""
+          },
+          {
+            "key": "SQLITE_DSN",
+            "value": "",
             "comment": ""
           }
         ],
